@@ -3,14 +3,23 @@ export function initLoginPage() {
         .then(response => response.text())
         .then(data => {
             document.body.innerHTML = data
+
+            listenForm()
+
         })
         .catch(error => console.error('Error while fetching the loginPage.html', error))
 
-    document.getElementById('login-form').addEventListener('submit', async function (event) {
-        event.preventDefault();
-        var username = document.getElementById('username')
-        var password = document.getElementById('password')
+}
 
+function listenForm() {
+    var loginForm = document.getElementById('login-form')
+    loginForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        var username = document.getElementById('username').value
+        var password = document.getElementById('password').value
+
+        console.log('username : ', username);
+        console.log('password : ', password);
         // Envoyer les informations d'identification au serveur pour authentification
         const response = await fetch('/login', {
             method: 'POST',
