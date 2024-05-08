@@ -12,34 +12,43 @@ export function initLoginPage() {
 }
 
 function listenForm() {
-    var loginForm = document.getElementById('login-form')
-    loginForm.addEventListener('submit', async function (event) {
+    document.getElementById('login-form').addEventListener('submit', async function (event) {
         event.preventDefault();
         var username = document.getElementById('username').value
         var password = document.getElementById('password').value
 
         console.log('username : ', username);
         console.log('password : ', password);
+
+        const credentials = btoa(`${username}:${password}`);
+
         // Envoyer les informations d'identification au serveur pour authentification
-        const response = await fetch('/login', {
+        fetch('https://learn.zone01dakar.sn/api/auth/signin', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${credentials}`
             },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            // Stocker le JWT côté client (par exemple, dans les cookies ou le stockage local)
-            localStorage.setItem('token', data.token);
-            // Rediriger l'utilisateur vers une page sécurisée ou effectuer d'autres actions
-            window.location.href = '/dashboard';
-        } else {
-            // Afficher un message d'erreur
-            console.error('Login failed:', data.error);
-        }
+            body: JSON.stringify({
+                key: 'value'
+            })
+        })
+            .then(response => {
+                console.log('response.ok : ', response.ok);
+                if (!response.ok) {
+                    throw new Error('Erreur de connexion');
+                }
+                console.log('response ====> ', response);
+                return response.json();
+            })
+            .then(data => {
+                console.log('JWT reçu :', data.token);
+                // Ici, vous pouvez stocker le JWT dans le localStorage ou le sessionStorage
+                localStorage.setItem('jwtToken', data.token);
+            })
+            .catch(error => {
+                console.error('************ Erreur lors de la récupération du JWT :', error);
+            })
 
     })
 }
