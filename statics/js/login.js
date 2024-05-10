@@ -36,7 +36,14 @@ function listenForm() {
             .then(response => {
                 console.log('response.ok : ', response.ok);
                 if (!response.ok) {
-                    throw new Error('Erreur de connexion');
+                    if (response.status === 401) {
+                        throw new Error('Nom d\'utilisateur ou mot de passe incorrect');
+                    }
+                    else if (response.status === 500) {
+                        throw new Error('Erreur côté serveur. Veuillez réessayer plus tard.');
+                    } else {
+                        throw new Error('Erreur de connexion');
+                    }
                 }
                 console.log('response ====> ', response);
                 return response.json();
@@ -49,6 +56,5 @@ function listenForm() {
             .catch(error => {
                 console.error('************ Erreur lors de la récupération du JWT :', error);
             })
-
     })
 }
