@@ -29,9 +29,6 @@ function listenForm() {
                 'Content-Type': 'application/json',
                 'Authorization': `Basic ${credentials}`
             },
-            body: JSON.stringify({
-                key: 'value'
-            })
         })
             .then(response => {
                 console.log('response.ok : ', response.ok);
@@ -49,9 +46,9 @@ function listenForm() {
                 return response.json();
             })
             .then(data => {
-                console.log('JWT reçu :', data.token);
+                console.log('JWT reçu :', data);
                 // Ici, vous pouvez stocker le JWT dans le localStorage ou le sessionStorage
-                localStorage.setItem('jwtToken', data.token);
+                localStorage.setItem('jwtToken', data);
             })
             .catch(error => {
                 console.error('************ Erreur lors de la récupération du JWT :', error);
