@@ -31,7 +31,7 @@ function listenForm() {
             },
         })
             .then(response => {
-                console.log('response.ok : ', response.ok);
+                console.log('The status ***************login***************', response.status);
                 if (!response.ok) {
                     if (response.status === 401) {
                         throw new Error('Nom d\'utilisateur ou mot de passe incorrect');
@@ -46,7 +46,7 @@ function listenForm() {
                 return response.json();
             })
             .then(data => {
-                console.log('JWT reçu :', data);
+                //console.log('JWT reçu :', data);
                 // Ici, vous pouvez stocker le JWT dans le localStorage ou le sessionStorage
                 localStorage.setItem('jwtToken', data);
             })
