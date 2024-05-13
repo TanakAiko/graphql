@@ -6,7 +6,7 @@ initLoginPage()
 
 document.addEventListener('keypress', (event) => {
     if (event.key === 'a') {
-        request(queryGetUserInfo)
+        //request(queryGetUserInfo)
         request(queryAuditRatio)
     }
 })

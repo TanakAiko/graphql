@@ -27,6 +27,7 @@ export function request(query) {
                 console.error('GraphQL Errors:', data.errors);
             } else {
                 console.log('Data:', data);
+                return data
                 // Ici, vous pouvez faire quelque chose avec les données récupérées
             }
         })

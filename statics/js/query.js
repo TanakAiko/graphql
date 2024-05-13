@@ -8,14 +8,36 @@ export const queryGetUserInfo = `
 }
   `;
 
-  export const queryAuditRatio = `
+export const queryAuditRatio = `
   {
-    role{
-      name
-      description
+    audit {
+      grade
+      result{
+        id
+        grade
+        attrs
+        type
+        path
+        object {
+          name
+        }
+      }
+      auditor  {
+        login
+      }
     }
-  }`
+  }
+  `
 
-  export const queryXPbyProject = `{
+export const queryXPbyProject = `{
     
   }`
+
+/* `
+  {
+    object(where: { type: { _eq: project }}) {
+      name
+      type
+      attrs
+    }  
+  }` */
