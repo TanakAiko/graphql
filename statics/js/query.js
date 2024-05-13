@@ -1,10 +1,21 @@
-export const queryGetUserInfo = `{
-    result {
-      id
-      user {
-        id
-        login
-      }
-    }
+export const queryGetUserInfo = `
+{
+  user {
+    id
+    login
+    attrs
   }
+}
   `;
+
+  export const queryAuditRatio = `
+  {
+    role{
+      name
+      description
+    }
+  }`
+
+  export const queryXPbyProject = `{
+    
+  }`

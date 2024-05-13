@@ -1,16 +1,17 @@
-/* import { getUserInfo } from "./statics/js/getUserInfo.js";
+import { request } from "./statics/js/request.js";
 import { initLoginPage } from "./statics/js/login.js";
+import { queryGetUserInfo, queryAuditRatio } from "./statics/js/query.js";
 
 initLoginPage()
 
 document.addEventListener('keypress', (event) => {
     if (event.key === 'a') {
-        console.log('addListener');
-        getUserInfo()
+        request(queryGetUserInfo)
+        request(queryAuditRatio)
     }
-}) */
+})
 
-const express = require('express');
+/* const express = require('express');
 const request = require('request');
 
 const app = express();
@@ -23,7 +24,7 @@ app.use('/proxy', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Proxy server running at http://localhost:${port}`);
-});
+}); */
 
 /* 
 function fetchData() {

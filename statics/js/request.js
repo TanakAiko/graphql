@@ -1,47 +1,36 @@
 import { getJWT } from "./utils.js";
 
-export function getUserInfo() {
+
+export function request(query) {
     const jwtToken = getJWT();
     if (jwtToken === false) return false;
-    // Définition de la requête GraphQL
-    const queryGetUserInfo = `
-        query {
-            user {
-                id
-                name
-                email
-            }
-        }
-    `;
 
     console.log('Just before fetch');
-    fetch('https://learn.zone01dakar.sn', {
+    fetch('https://learn.zone01dakar.sn/api/graphql-engine/v1/graphql', {
         method: 'POST',
-        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             'Accept' : 'application/json',
             'Authorization': `Bearer ${jwtToken}`
         },
-        body: JSON.stringify({ query: queryGetUserInfo })
+        body: JSON.stringify({ query: query })
     })
         .then(response => {
-            console.log('The status ***************getUserInfo***************', response.status);
+            console.log('The status ***************request***************', response.status);
             if (!response.ok) {
-                throw new Error('Failed to fetch user info.');
+                throw new Error('Failed to fetch data');
             }
             return response.json();
         })
         .then(data => {
             if (data.errors) {
                 console.error('GraphQL Errors:', data.errors);
-                // Gérer les erreurs spécifiques à GraphQL ici
             } else {
-                console.log('User Info:', data);
+                console.log('Data:', data);
                 // Ici, vous pouvez faire quelque chose avec les données récupérées
             }
         })
         .catch(error => {
-            console.error('Error fetching user info:', error);
+            console.error('Error fetching from the GraphQl API:', error);
         });
 }

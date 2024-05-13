@@ -1,3 +1,7 @@
+import { request } from "./request.js";
+import { queryAuditRatio, queryGetUserInfo } from "./query.js";
+
+
 export function initLoginPage() {
     fetch('../../templates/loginPage.html')
         .then(response => response.text())
@@ -49,9 +53,13 @@ function listenForm() {
                 //console.log('JWT reçu :', data);
                 // Ici, vous pouvez stocker le JWT dans le localStorage ou le sessionStorage
                 localStorage.setItem('jwtToken', data);
+                
+                request(queryGetUserInfo)
+                request(queryAuditRatio)
             })
             .catch(error => {
                 console.error('************ Erreur lors de la récupération du JWT :', error);
             })
+
     })
 }
