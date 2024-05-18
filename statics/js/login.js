@@ -1,5 +1,5 @@
 import { request } from "./request.js";
-import { queryAuditRatio, queryGetUserInfo } from "./query.js";
+import {queryGetUserInfo } from "./query.js";
 
 export function initLoginPage() {
     fetch('../../templates/loginPage.html')
@@ -54,7 +54,6 @@ function listenForm() {
                 localStorage.setItem('jwtToken', data);
                 
                 request(queryGetUserInfo)
-                request(queryAuditRatio)
             })
             .catch(error => {
                 console.error('************ Erreur lors de la récupération du JWT :', error);

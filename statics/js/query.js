@@ -20,7 +20,7 @@ export const queryGetUserInfo = `
   transaction_aggregate(where: {
     _and:[
       {event: {registrationId: {_eq: 55}}, type: {_eq: "xp"}},
-      {amount: {_gte: 1000}}
+      {object: {type: {_eq: "project"}}}
     ]
   }) {
     nodes {
@@ -32,64 +32,3 @@ export const queryGetUserInfo = `
   }
 }
   `;
-
-export const queryAuditRatio = `
-{
-  audit (where: {
-    _and:[
-      {auditor: {login: {_eq: "cheimbaye"}}},
-      {grade: {_is_null: false}}
-    ]
-  }) {
-    grade
-    auditor {
-      login
-    }
-  }
-}
-  `
-
-  export const queryAuditFail = `
-  {
-    audit (where: {
-      _and:[
-        {auditor: {login: {_eq: "cheimbaye"}}},
-        {grade: {_lt: 1}}
-      ]
-    }) {
-      grade
-      auditor {
-        login
-      }
-    }
-  }
-  `
-
-  export const queryAuditPass = `
-  {
-    audit (where: {
-      _and:[
-        {auditor: {login: {_eq: "cheimbaye"}}},
-        {grade: {_gte: 1}}
-      ]
-    }) {
-      grade
-      auditor {
-        login
-      }
-    }
-  }
-  `
-
-export const queryXPbyProject = `{
-    
-  }`
-
-/* `
-  {
-    object(where: { type: { _eq: project }}) {
-      name
-      type
-      attrs
-    }  
-  }` */
