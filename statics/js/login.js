@@ -1,27 +1,26 @@
-import { request } from "./request.js";
-import {queryGetUserInfo } from "./query.js";
+import { queryGetUserInfo } from "./query.js";
+import { initHomePage } from "./home.js";
 
 export function initLoginPage() {
+    if (localStorage.getItem('jwtToken')) {
+        initHomePage()
+        return
+    }
     fetch('../../templates/loginPage.html')
         .then(response => response.text())
         .then(data => {
             document.body.innerHTML = data
-
-            listenForm()
-
+            listenLoginForm()
         })
         .catch(error => console.error('Error while fetching the loginPage.html', error))
-
 }
 
-function listenForm() {
+function listenLoginForm() {
     document.getElementById('login-form').addEventListener('submit', async function (event) {
         event.preventDefault();
+
         const username = document.getElementById('username').value
         const password = document.getElementById('password').value
-
-        console.log('username : ', username);
-        console.log('password : ', password);
 
         const credentials = btoa(`${username}:${password}`);
 
@@ -34,7 +33,6 @@ function listenForm() {
             },
         })
             .then(response => {
-                console.log('The status ***************login***************', response.status);
                 if (!response.ok) {
                     if (response.status === 401) {
                         throw new Error('Nom d\'utilisateur ou mot de passe incorrect');
@@ -45,18 +43,15 @@ function listenForm() {
                         throw new Error('Erreur de connexion');
                     }
                 }
-                console.log('response ====> ', response);
                 return response.json();
             })
             .then(data => {
-                //console.log('JWT reçu :', data);
-                // Ici, vous pouvez stocker le JWT dans le localStorage ou le sessionStorage
                 localStorage.setItem('jwtToken', data);
-                
                 request(queryGetUserInfo)
+                initHomePage()
             })
             .catch(error => {
-                console.error('************ Erreur lors de la récupération du JWT :', error);
+                console.error('Erreur lors de la récupération du JWT :', error);
             })
 
     })
