@@ -1,7 +1,6 @@
 import { request } from "./request.js";
 import { queryAuditRatio, queryGetUserInfo } from "./query.js";
 
-
 export function initLoginPage() {
     fetch('../../templates/loginPage.html')
         .then(response => response.text())
@@ -18,8 +17,8 @@ export function initLoginPage() {
 function listenForm() {
     document.getElementById('login-form').addEventListener('submit', async function (event) {
         event.preventDefault();
-        var username = document.getElementById('username').value
-        var password = document.getElementById('password').value
+        const username = document.getElementById('username').value
+        const password = document.getElementById('password').value
 
         console.log('username : ', username);
         console.log('password : ', password);
