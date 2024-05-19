@@ -1,5 +1,6 @@
 import { queryGetUserInfo } from "./query.js";
 import { initHomePage } from "./home.js";
+import { request } from "./request.js";
 
 export function initLoginPage() {
     if (localStorage.getItem('jwtToken')) {
@@ -24,7 +25,6 @@ function listenLoginForm() {
 
         const credentials = btoa(`${username}:${password}`);
 
-        // Envoyer les informations d'identification au serveur pour authentification
         fetch('https://learn.zone01dakar.sn/api/auth/signin', {
             method: 'POST',
             headers: {
