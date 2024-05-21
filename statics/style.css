@@ -12,6 +12,7 @@
 
 .rectangle {
     fill: aquamarine;
+    cursor: pointer;
 }
 
 #xp {}

@@ -29,6 +29,15 @@ export function histograph(data) {
         point += widthRect
     });
     histograph.innerHTML += addBare
+    rectAddListener()
+}
+
+export function rectAddListener() {
+    const rectangles = document.querySelectorAll(".rectangle")
+    rectangles.forEach(rect => {
+        rect.addEventListener("mouseover", displayLegende)
+        rect.addEventListener("mouseout", stopDisplay)
+    })
 }
 
 function displayLegende(event) {
@@ -46,13 +55,4 @@ function stopDisplay(event) {
     const rectL = document.getElementById(project + "L")
     rect.style.display = "none"
     rectL.style.display = "none"
-}
-
-export function rectAddListener() {
-    const rectangles = document.querySelectorAll(".rectangle")
-    rectangles.forEach(rect => {
-        addEventListener("mouseover", displayLegende)
-        addEventListener("mouseout", stopDisplay)
-    })
-
 }

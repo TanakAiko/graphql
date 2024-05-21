@@ -26,8 +26,6 @@ export function request(query) {
             } else {
                 displayUserInfo(data)
                 histograph(data)
-
-                rectAddListener()
             }
         })
         .catch(error => {
