@@ -22,7 +22,8 @@ export const queryGetUserInfo = `
       {event: {registrationId: {_eq: 55}}, type: {_eq: "xp"}},
       {object: {type: {_eq: "project"}}}
     ]
-  }) {
+  }
+  order_by: {createdAt:asc}) {
     nodes {
       amount
       object {

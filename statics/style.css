@@ -1,5 +1,18 @@
-svg {
-    border: 1px solid #ccc;
-    width: 500px;
-    height: 300px;
+#xp,
+#userInfo {
+    border: 1px solid #5a5555;
+    width: 1000px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#xp {}
+
+#userInfo {
+    margin-bottom: 10px;
+    margin-top: 10px;
 }

@@ -1,3 +1,4 @@
+import { displayUserInfo, histograph } from "./graph.js";
 import { getJWT } from "./utils.js";
 
 export function request(query) {
@@ -23,7 +24,8 @@ export function request(query) {
             if (data.errors) {
                 console.error('GraphQL Errors:', data.errors);
             } else {
-                console.log('Data:', data);
+                displayUserInfo(data)
+                histograph(data)
             }
         })
         .catch(error => {
