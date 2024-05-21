@@ -1,4 +1,4 @@
-import { displayUserInfo, histograph } from "./graph.js";
+import { displayUserInfo, histograph, rectAddListener } from "./graph.js";
 import { getJWT } from "./utils.js";
 
 export function request(query) {
@@ -26,6 +26,8 @@ export function request(query) {
             } else {
                 displayUserInfo(data)
                 histograph(data)
+
+                rectAddListener()
             }
         })
         .catch(error => {

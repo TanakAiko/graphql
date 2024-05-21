@@ -10,9 +10,36 @@
 
 }
 
+.rectangle {
+    fill: aquamarine;
+}
+
 #xp {}
 
 #userInfo {
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+.legendeTXT {
+    display: none;
+    font-size: 19px;
+    text-anchor: middle;
+}
+
+#ordoneTitle{
+    display: inline;
+    font-size: 40px;
+}
+
+.ordoneLeg{
+    display: inline;
+    font-size: 18px;
+}
+
+#allInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

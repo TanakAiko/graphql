@@ -4,6 +4,7 @@ import { request } from "./request.js";
 
 export function initLoginPage() {
     if (localStorage.getItem('jwtToken')) {
+        request(queryGetUserInfo)
         initHomePage()
         return
     }
