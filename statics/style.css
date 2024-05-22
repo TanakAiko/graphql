@@ -1,5 +1,6 @@
 #xp,
-#userInfo {
+#userInfo,
+#pieChart {
     border: 1px solid #5a5555;
     width: 1000px;
     height: fit-content;
@@ -7,6 +8,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
 
 }
 
@@ -15,25 +18,18 @@
     cursor: pointer;
 }
 
-#xp {}
-
-#userInfo {
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
 .legendeTXT {
     display: none;
     font-size: 19px;
     text-anchor: middle;
 }
 
-#ordoneTitle{
+#ordoneTitle {
     display: inline;
     font-size: 40px;
 }
 
-.ordoneLeg{
+.ordoneLeg {
     display: inline;
     font-size: 18px;
 }
@@ -44,3 +40,23 @@
     justify-content: center;
     align-items: center;
 }
+
+body {
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+
+/* .pie {
+    width: 300px;
+    background: blue;
+    border-radius: 50%;
+}
+
+.pie circle {
+    fill: none;
+    stroke: aquamarine;
+    stroke-width: 32;
+    animation: rotate 1.5s ease-in;
+}
+ */

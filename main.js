@@ -5,8 +5,9 @@ import { request } from "./statics/js/request.js";
 
 initLoginPage()
 
-document.addEventListener('keypress', (event) => {
+/* document.addEventListener('keypress', (event) => {
     if (event.key === 'a') {
         request(queryGetUserInfo)
     }
 })
+ */

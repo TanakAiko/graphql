@@ -1,4 +1,4 @@
-import { displayUserInfo, histograph, rectAddListener } from "./graph.js";
+import { displayUserInfo, histograph, pieChart } from "./graph.js";
 import { getJWT } from "./utils.js";
 
 export function request(query) {
@@ -9,7 +9,7 @@ export function request(query) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Accept' : 'application/json',
+            'Accept': 'application/json',
             'Authorization': `Bearer ${jwtToken}`
         },
         body: JSON.stringify({ query: query })
@@ -26,6 +26,7 @@ export function request(query) {
             } else {
                 displayUserInfo(data)
                 histograph(data)
+                pieChart(data.data.user['0'])
             }
         })
         .catch(error => {
