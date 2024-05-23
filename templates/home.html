@@ -6,9 +6,23 @@
     <div id="userInfo">
         <h3>User info</h3>
     </div>
+    
     <div id="pieChart">
         <h3>Audit ratio</h3>
-        <svg height="500" width="500" id="pie" ></svg>
+        <div id="svgPlus">
+            <svg height="500" width="500" id="pie" ></svg>
+
+            <div id="legendPie">
+                <div id="valid">
+                    <div id="validColor"></div>
+                    <label for="validColor" id="labelValid"></label>
+                </div>
+                <div id="fail">
+                    <div id="failColor"></div>
+                    <label for="failColor" id="labelFail"></label>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div id="xp">
@@ -16,7 +30,7 @@
         <svg height="500" width="1000" id="histograph">
             <line x1="50" y1="50" x2="50" y2="450" stroke="black" stroke-width="2" />
             <line x1="50" y1="450" x2="950" y2="450" stroke="black" stroke-width="2" />
-            <text x="30" y="29" id="ordoneTitle">Xp</text>
+            <text x="20" y="29" id="ordoneTitle">Xp(B)</text>
         </svg>
     </div>
 

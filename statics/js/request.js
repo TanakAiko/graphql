@@ -22,6 +22,10 @@ export function request(query) {
         })
         .then(data => {
             if (data.errors) {
+                if (data.errors['0'].message === "Could not verify JWT: JWTExpired") {
+                    localStorage.removeItem("jwtToken")
+                    initLoginPage()
+                }
                 console.error('GraphQL Errors:', data.errors);
             } else {
                 displayUserInfo(data)

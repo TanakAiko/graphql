@@ -20,7 +20,7 @@ export const queryGetUserInfo = `
   transaction_aggregate(where: {
     _and:[
       {event: {registrationId: {_eq: 55}}, type: {_eq: "xp"}},
-      {object: {type: {_eq: "project"}}}
+      
     ]
   }
   order_by: {createdAt:asc}) {
@@ -28,6 +28,12 @@ export const queryGetUserInfo = `
       amount
       object {
         name
+        type
+      }
+    }
+    aggregate {
+      sum {
+        amount
       }
     }
   }
