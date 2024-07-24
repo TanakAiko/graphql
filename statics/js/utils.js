@@ -7,3 +7,13 @@ export function getJWT() {
     }
     return jwtToken
 }
+
+export function createPopup(text) {
+    let el = document.createElement('div');
+    el.classList.add('popup');
+    el.innerHTML = text;
+    document.body.appendChild(el);
+    setTimeout(() => {
+        el.remove();
+    }, 5000);
+}

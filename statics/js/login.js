@@ -1,6 +1,8 @@
 import { queryGetUserInfo } from "./query.js";
 import { initHomePage } from "./home.js";
 import { request } from "./request.js";
+import { loginHTML } from "./pages.js";
+import { createPopup } from "./utils.js";
 
 export function initLoginPage() {
     if (localStorage.getItem('jwtToken')) {
@@ -8,13 +10,8 @@ export function initLoginPage() {
         initHomePage()
         return
     }
-    fetch('../../templates/loginPage.html')
-        .then(response => response.text())
-        .then(data => {
-            document.body.innerHTML = data
-            listenLoginForm()
-        })
-        .catch(error => console.error('Error while fetching the loginPage.html', error))
+    document.body.innerHTML = loginHTML
+    listenLoginForm()
 }
 
 function listenLoginForm() {
@@ -36,12 +33,12 @@ function listenLoginForm() {
             .then(response => {
                 if (!response.ok) {
                     if (response.status === 401) {
-                        throw new Error('Nom d\'utilisateur ou mot de passe incorrect');
+                        throw new Error('Username or password incorrect');
                     }
                     else if (response.status === 500) {
-                        throw new Error('Erreur côté serveur. Veuillez réessayer plus tard.');
+                        throw new Error('Error on the server side.Please try again later.');
                     } else {
-                        throw new Error('Erreur de connexion');
+                        throw new Error('Connexion error');
                     }
                 }
                 return response.json();
@@ -52,7 +49,8 @@ function listenLoginForm() {
                 initHomePage()
             })
             .catch(error => {
-                console.error('Erreur lors de la récupération du JWT :', error);
+                console.error('Error when recovering the JWT: ', error);
+                createPopup('Username or password incorrect')
             })
 
     })

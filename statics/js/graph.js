@@ -1,16 +1,16 @@
 export function displayUserInfo(data) {
     var infoDiv = document.getElementById('userInfo')
     infoDiv.innerHTML += `
-    Last Name: ${data.data.user['0'].lastName}
-    <br>
-    First Name: ${data.data.user['0'].firstName}
-    <br>
-    Email: ${data.data.user['0'].email}
-    <br>
-    Login: ${data.data.user['0'].login}
-    <br>
-    XP amount: ${data.data.transaction_aggregate.aggregate.sum.amount} B
-    <br>
+    <p><span class="title">Last Name:</span> ${data.data.user['0'].lastName}</p>
+    
+    <p><span class="title">First Name:</span> ${data.data.user['0'].firstName}</p>
+    
+    <p><span class="title">Email:</span> ${data.data.user['0'].email}</p>
+    
+    <p><span class="title">Login:</span> ${data.data.user['0'].login}</p>
+    
+    <p><span class="title">XP amount:</span> ${data.data.transaction_aggregate.aggregate.sum.amount} B</p>
+    
     `;
 }
 
@@ -32,7 +32,7 @@ export function histograph(data) {
     tab.forEach(node => {
         var heightRect = Math.floor((node.amount * 400) / max)
         point += space
-        addBare += `<rect x="${point + 50}" y="${450 - heightRect - 2}" width="${widthRect}" height="${heightRect}" class="rectangle" data-project="${node.object.name}" data-xp-amount="${node.amount}"></rect>
+        addBare += `<rect id="${node.object.name}-main" x="${point + 50}" y="${450 - heightRect - 2}" width="${widthRect}" height="${heightRect}" class="rectangle" data-project="${node.object.name}" data-xp-amount="${node.amount}"></rect>
         <text x="${point + 62}" y="${450 - heightRect - 8}" class="legendeTXT" id="${node.object.name}L">${node.amount}</text>
         <text x="${point + 70}" y="${450 + 20}" class="legendeTXT" id="${node.object.name}">${node.object.name}</text>`
         point += widthRect
@@ -49,10 +49,9 @@ export function pieChart(data) {
     var start = 0
 
 
-    const audit = [{ count: data.validAudits.aggregate.count, color: "aquamarine", type: "validAudit" }, { count: data.failedAudits.aggregate.count, color: "blue", type: "failedAudit" }]
+    const audit = [{ count: data.validAudits.aggregate.count, color: "aquamarine", type: "validAudit" }, { count: data.failedAudits.aggregate.count, color: "#7F5056", type: "failedAudit" }]
     audit.forEach(gOf => {
         const angle = (gOf.count / (audit[0].count + audit[1].count)) * 2 * Math.PI
-        const spanMess = gOf.validAudits === "validAudit" ? `Audit valided: ${gOf.count}` : `Audit failed: ${gOf.count}`
 
         const x1 = center + radius * Math.cos(start)
         const y1 = center + radius * Math.sin(start)
@@ -86,17 +85,20 @@ function rectAddListener() {
 
 function displayLegende(event) {
     const project = event.target.dataset.project
+    const main = document.getElementById(project + "-main")
     const rect = document.getElementById(project)
     const rectL = document.getElementById(project + "L")
     rect.style.display = "inline"
     rectL.style.display = "inline"
-
+    main.style.fill = "#7F5056"
 }
 
 function stopDisplay(event) {
     const project = event.target.dataset.project
+    const main = document.getElementById(project + "-main")
     const rect = document.getElementById(project)
     const rectL = document.getElementById(project + "L")
     rect.style.display = "none"
     rectL.style.display = "none"
+    main.style.fill = "aquamarine"
 }
