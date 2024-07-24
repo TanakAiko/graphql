@@ -21,7 +21,7 @@ function listenLoginForm() {
         const username = document.getElementById('username').value
         const password = document.getElementById('password').value
 
-        const credentials = btoa(`${username}:${password}`);
+        const credentials = btoa(unescape(encodeURIComponent(`${username}:${password}`)));
 
         fetch('https://learn.zone01dakar.sn/api/auth/signin', {
             method: 'POST',
