@@ -1,3 +1,3 @@
 # graphql
 
-Hosting [link](https://z01-cheimbaye.vercel.app/)
+Hosting [link](https://graphql-cheimbaye.vercel.app/)
