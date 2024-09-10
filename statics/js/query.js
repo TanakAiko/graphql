@@ -19,8 +19,7 @@ export const queryGetUserInfo = `
   }
   transaction_aggregate(where: {
     _and:[
-      {event: {registrationId: {_eq: 55}}, type: {_eq: "xp"}},
-      
+      {event: {registrations: {id: {_eq: 55}}}, type: {_eq: "xp"}},
     ]
   }
   order_by: {createdAt:asc}) {
